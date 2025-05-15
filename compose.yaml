@@ -2,10 +2,15 @@ services:
   db:
     image: mysql
     restart: always
+    #ports:
+    #- 3306:3306
     environment:
+      #MYSQL_DATABASE: Prueba
       MYSQL_ROOT_PASSWORD: pass
+      #MYSQL_USER: AleMorales09
+      #MYSQL_PASSWORD: MAM2025
     networks:
-    - network1
+      - network1
 
   phpmyadmin:
     image: phpmyadmin
@@ -13,11 +18,12 @@ services:
     ports:
       - 8080:80
     environment:
-      - PMA_ARBITRARY=1
+      PMA_HOST: db
+      #MYSQL_ROOT_PASSWORD: MAM2025
     networks:
-    - network1
+      - network1
     depends_on:
-      - db  
+      - db
 
 networks:
   network1:
